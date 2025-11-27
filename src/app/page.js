@@ -7,7 +7,7 @@ import { useCart } from '../context/CartContext';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 import { Search, ShoppingBag } from 'lucide-react';
-import FavoriteBtn from '../components/FavoriteBtn'; // Импорт сердечка
+import FavoriteBtn from '../components/FavoriteBtn';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -19,6 +19,7 @@ export default function Home() {
 
   const fetchProducts = () => {
     setLoading(true);
+    // Убедись, что ссылка правильная (твоя с Render)
     const url = new URL('https://novamarket-backend-6fi6.onrender.com/api/products');
     if (search) url.searchParams.append('search', search);
     if (category !== 'all') url.searchParams.append('category', category);
@@ -30,7 +31,10 @@ export default function Home() {
         setProducts(data);
         setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -83,14 +87,13 @@ export default function Home() {
                 className="bg-white/40 backdrop-blur-xl border border-white/50 rounded-3xl p-4 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group flex flex-col relative"
               >
                 
-                {/* СЕРДЕЧКО ЗДЕСЬ */}
                 <div className="absolute top-6 right-6 z-20">
                     <FavoriteBtn productId={product.id} />
                 </div>
 
                 <Link href={`/product/${product.id}`} className="cursor-pointer block relative h-64 mb-4 bg-white/50 rounded-2xl overflow-hidden shadow-inner">
                     <Image 
-                        src={product.image_url} 
+                        src={product.image || product.img || product.imageUrl || '/placeholder.png'} 
                         alt={product.title} 
                         fill 
                         className="object-contain p-6 group-hover:scale-110 transition duration-500" 
