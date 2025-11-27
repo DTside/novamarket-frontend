@@ -24,7 +24,7 @@ export default function AdminPage() {
 
   const fetchOrders = async () => {
     try {
-      const res = await fetch('http://localhost:5000/admin/orders');
+      const res = await fetch('https://novamarket-api.onrender.com/admin/orders');
       const data = await res.json();
       setOrders(data);
       setLoading(false);
@@ -36,7 +36,7 @@ export default function AdminPage() {
   // Функция смены статуса
   const handleStatusChange = async (orderId, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:5000/admin/orders/${orderId}/status`, {
+      const res = await fetch(`https://novamarket-api.onrender.com/admin/orders/${orderId}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),

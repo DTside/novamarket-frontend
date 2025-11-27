@@ -102,7 +102,7 @@ export default function PaymentModal({ amount, onClose, onSuccess }) {
   const [clientSecret, setClientSecret] = useState('');
 
   useState(() => {
-    fetch('http://localhost:5000/create-payment-intent', {
+    fetch('https://novamarket-api.onrender.com/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount }),

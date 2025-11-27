@@ -16,7 +16,7 @@ export default function FavoriteBtn({ productId }) {
       setUserId(user.id);
       
       // Спрашиваем у сервера список лайков
-      fetch(`http://localhost:5000/favorites/ids/${user.id}`)
+      fetch(`https://novamarket-api.onrender.com/favorites/ids/${user.id}`)
         .then(res => res.json())
         .then(ids => {
             if (ids.includes(productId)) setIsLiked(true);
@@ -40,7 +40,7 @@ export default function FavoriteBtn({ productId }) {
 
     if (newStatus) {
         // Лайкаем
-        await fetch('http://localhost:5000/favorites', {
+        await fetch('https://novamarket-api.onrender.com/favorites', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_id: userId, product_id: productId })
@@ -48,7 +48,7 @@ export default function FavoriteBtn({ productId }) {
         toast.success("Добавлено в избранное ❤️");
     } else {
         // Убираем лайк
-        await fetch(`http://localhost:5000/favorites/${userId}/${productId}`, {
+        await fetch(`https://novamarket-api.onrender.com/favorites/${userId}/${productId}`, {
             method: 'DELETE'
         });
         toast("Удалено из избранного");

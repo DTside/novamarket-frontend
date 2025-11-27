@@ -17,7 +17,7 @@ function ChangePasswordForm({ userId }) {
     if (!passData.old || !passData.new) return toast.error("Заполните все поля");
     setLoading(true);
     try {
-        const res = await fetch(`http://localhost:5000/users/${userId}/password`, {
+        const res = await fetch(`https://novamarket-api.onrender.com/users/${userId}/password`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ oldPassword: passData.old, newPassword: passData.new })
@@ -61,15 +61,15 @@ export default function ProfilePage() {
     setUser(userData);
     setEditForm({ full_name: userData.full_name, avatar_url: userData.avatar_url || '' });
 
-    fetch(`http://localhost:5000/users/${userData.id}/orders`).then(res => res.json()).then(data => setOrders(data));
-    fetch(`http://localhost:5000/users/${userData.id}/cards`).then(res => res.json()).then(data => setCards(data));
+    fetch(`https://novamarket-api.onrender.com/users/${userData.id}/orders`).then(res => res.json()).then(data => setOrders(data));
+    fetch(`https://novamarket-api.onrender.com/users/${userData.id}/cards`).then(res => res.json()).then(data => setCards(data));
     // Загрузка избранного
-    fetch(`http://localhost:5000/favorites/${userData.id}`).then(res => res.json()).then(data => setFavorites(data));
+    fetch(`https://novamarket-api.onrender.com/favorites/${userData.id}`).then(res => res.json()).then(data => setFavorites(data));
   }, []);
 
   const handleUpdateProfile = async () => {
     try {
-        const res = await fetch(`http://localhost:5000/users/${user.id}`, {
+        const res = await fetch(`https://novamarket-api.onrender.com/users/${user.id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(editForm)
@@ -89,7 +89,7 @@ export default function ProfilePage() {
 
   const deleteCard = async (id) => {
     if(!confirm('Удалить карту?')) return;
-    await fetch(`http://localhost:5000/cards/${id}`, { method: 'DELETE' });
+    await fetch(`https://novamarket-api.onrender.com/cards/${id}`, { method: 'DELETE' });
     setCards(cards.filter(c => c.id !== id));
     toast.success('Карта удалена');
   };

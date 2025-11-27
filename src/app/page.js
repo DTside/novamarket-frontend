@@ -19,7 +19,7 @@ export default function Home() {
 
   const fetchProducts = () => {
     setLoading(true);
-    const url = new URL('http://localhost:5000/products');
+    const url = new URL('https://novamarket-api.onrender.com/products');
     if (search) url.searchParams.append('search', search);
     if (category !== 'all') url.searchParams.append('category', category);
     if (sort !== 'default') url.searchParams.append('sort', sort);

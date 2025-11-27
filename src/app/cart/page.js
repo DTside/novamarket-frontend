@@ -29,7 +29,7 @@ export default function CartPage() {
   const handleApplyPromo = async () => {
     if (!promoInput) return;
     try {
-        const res = await fetch('http://localhost:5000/coupons/validate', {
+        const res = await fetch('https://novamarket-api.onrender.com/coupons/validate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ code: promoInput })
@@ -52,7 +52,7 @@ export default function CartPage() {
     const user = JSON.parse(localStorage.getItem('user'));
 
     try {
-      const res = await fetch('http://localhost:5000/orders', {
+      const res = await fetch('https://novamarket-api.onrender.com/orders', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

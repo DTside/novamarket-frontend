@@ -16,7 +16,7 @@ export function CartProvider({ children }) {
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUser(parsedUser);
-      fetch(`http://localhost:5000/cart/${parsedUser.id}`)
+      fetch(`https://novamarket-api.onrender.com/cart/${parsedUser.id}`)
         .then(res => res.json())
         .then(serverCart => {
             const localCart = JSON.parse(localStorage.getItem('novaCart') || '[]');

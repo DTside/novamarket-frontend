@@ -15,7 +15,7 @@ export default function LoginPage() {
 
     try {
       // 1. Отправляем запрос на бэкенд
-      const res = await fetch('http://localhost:5000/login', {
+      const res = await fetch('https://novamarket-api.onrender.com/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

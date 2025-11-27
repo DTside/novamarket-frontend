@@ -25,7 +25,7 @@ export default function ProductPage({ params }) {
   const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/products/${id}`)
+    fetch(`https://novamarket-api.onrender.com/products/${id}`)
       .then(res => res.json())
       .then(data => { 
           setProduct(data); 

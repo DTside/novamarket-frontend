@@ -66,7 +66,7 @@ export default function CardForm({ userId, onCardAdded }) {
     if (rawNumber.startsWith('4')) brand = 'Visa';
 
     try {
-        const res = await fetch('http://localhost:5000/cards', {
+        const res = await fetch('https://novamarket-api.onrender.com/cards', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ user_id: userId, number: rawNumber, brand })
